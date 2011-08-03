@@ -2,6 +2,8 @@
 
 ![Gerbil!](http://www.petsworld.co.uk/images/gerbil.jpg)
 
+_n_. Gerbils: Inquisitive, friendly animals that rarely bite, TDD for the rest of us
+
 Gerbil attemps to be an uber simple and minimalistic testing framework for javascript.
 It's written in coffeescript so be nice with me
 
