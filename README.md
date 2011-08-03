@@ -39,7 +39,19 @@ scenario("This is my scenario", function(){
 });
 ```
 
+## What's the catch?
+
+The results are only shown in the console, the one from console.log
+Run it with an open inspector
+
+![Console tests](https://img.skitch.com/20110803-ghqcq5urn8hx99n2s1u777hq58.jpg)
+
+And in the bottom you will find the summary
+
+![Console summary](https://img.skitch.com/20110803-ry5249hcg6n69y5gjfhaibgxj9.jpg)
+
 ## TODO
   1. Workaround for tests using setTimeout
   2. Validate exceptions
-  3. Get a gerbil as a pet
+  3. Trigger events on tests
+  4. Get a gerbil as a pet
