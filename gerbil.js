@@ -21,12 +21,14 @@
       this.setup = this.extract("setup", this.tests);
       this.before = this.extract("before", this.tests);
       this.after = this.extract("after", this.tests);
+      this.cleanup = this.extract("cleanup", this.tests);
       this.setup();
       _ref = this.tests;
       for (key in _ref) {
         value = _ref[key];
         this.exec(key, value);
       }
+      this.cleanup();
       return console.warn("Results for " + this.description + " " + this.success + "/" + this.count + " tests. " + this.assertions + " assertions");
     };
     Gerbil.prototype.assert_equal = function(obj1, obj2) {

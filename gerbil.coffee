@@ -13,12 +13,14 @@ class Gerbil
 
   run: ->
     console.log @description
-    @setup =  this.extract "setup",   @tests
-    @before = this.extract "before",  @tests
-    @after  = this.extract "after",   @tests
+    @setup   = this.extract "setup",   @tests
+    @before  = this.extract "before",  @tests
+    @after   = this.extract "after",   @tests
+    @cleanup = this.extract "cleanup", @tests
 
     @setup()
     this.exec key, value for key, value of @tests
+    @cleanup()
     console.warn "Results for #{@description} #{@success}/#{@count} tests. #{@assertions} assertions"
 
   assert_equal: (obj1, obj2) ->

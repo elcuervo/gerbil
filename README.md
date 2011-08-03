@@ -10,13 +10,20 @@ It's written in coffeescript so be nice with me
 ```javascript
 scenario("This is my scenario", function(){
   "setup":  function(){
+    // When scenario starts
     window.some_class = new MagicClass;
   },
   "before": function(){
+    // Before every test
     some_class.magic_magic();
   },
   "after":  function(){
+    // After every test
     some_class.clean();
+  },
+  "cleanup": function(){
+    // When the scenario ends
+    window.some_class = false;
   },
 
   "MagicClass should have a length": function(){
