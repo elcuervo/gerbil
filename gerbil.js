@@ -5,19 +5,20 @@
     Gerbil.prototype.fail = 0;
     Gerbil.prototype.count = 0;
     Gerbil.prototype.assertions = 0;
-    function Gerbil(description, tests) {
+    function Gerbil(description, tests, logger) {
       this.description = description;
       this.tests = tests;
+      this.logger = logger != null ? logger : window.console;
     }
     Gerbil.prototype.extract = function(key, from) {
       var value;
-      value = from[key] || function() {};
+      value = from[key] || (function() {});
       delete from[key];
       return value;
     };
     Gerbil.prototype.run = function() {
       var key, value, _ref;
-      console.log(this.description);
+      this.logger.log(this.description);
       this.setup = this.extract("setup", this.tests);
       this.before = this.extract("before", this.tests);
       this.after = this.extract("after", this.tests);
@@ -29,7 +30,7 @@
         this.exec(key, value);
       }
       this.cleanup();
-      return console.warn("Results for " + this.description + " " + this.success + "/" + this.count + " tests. " + this.assertions + " assertions");
+      return this.logger.warn("Results for " + this.description + " " + this.success + "/" + this.count + " tests. " + this.assertions + " assertions");
     };
     Gerbil.prototype.assert_equal = function(obj1, obj2) {
       var error, key, value;
@@ -42,14 +43,17 @@
       error = new Error("expected " + obj2 + " got " + obj1);
       switch (obj1.constructor) {
         case Array:
-          if (obj1.length === obj2.length) {
-            for (key in obj1) {
-              value = obj1[key];
-              if (value !== obj2[key]) {
-                throw error;
+          if (!(function() {
+            var _results;
+            if (obj1.length === obj2.length) {
+              _results = [];
+              for (key in obj1) {
+                value = obj1[key];
+                _results.push(value === obj2[key]);
               }
+              return _results;
             }
-          } else {
+          })()) {
             throw error;
           }
           break;
@@ -74,10 +78,10 @@
         initial_assertions = this.assertions;
         test.apply(this);
         this.success += 1;
-        return console.log(" |-- " + test_name + " SUCCESS (" + (this.assertions - initial_assertions) + " assertions)");
+        return this.logger.log(" |-- " + test_name + " SUCCESS (" + (this.assertions - initial_assertions) + " assertions)");
       } catch (error) {
         this.fail += 1;
-        return console.error(" |-- " + error + ": " + test_name + " FAILED");
+        return this.logger.error(" |-- " + error + ": " + test_name + " FAILED");
       } finally {
         this.after();
         this.count += 1;
@@ -85,10 +89,10 @@
     };
     return Gerbil;
   })();
-  this.scenario = function(description, tests) {
-    this.current_scenario = new Gerbil(description, tests);
-    this.assert = current_scenario.assert;
-    this.assert_equal = current_scenario.assert_equal;
-    return current_scenario.run();
+  this.scenario = function(description, tests, logger) {
+    this.current_scenario = new Gerbil(description, tests, logger);
+    this.assert = this.current_scenario.assert;
+    this.assert_equal = this.current_scenario.assert_equal;
+    return this.current_scenario.run();
   };
 }).call(this);

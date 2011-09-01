@@ -10,7 +10,7 @@ It's written in coffeescript so be nice with me
 ## Example
 
 ```javascript
-scenario("This is my scenario", function(){
+scenario("This is my scenario", {
   "setup":  function(){
     // When scenario starts
     window.some_class = new MagicClass;
@@ -37,6 +37,23 @@ scenario("This is my scenario", function(){
     assert(some_class.valid);
   }
 });
+```
+
+## Custom logger
+
+```javascript
+var my_cool_logger = {
+  "warn":   function(msg){},
+  "log":    function(msg){},
+  "error":  function(msg){
+    alert(msg);
+  },
+};
+scenario("Fancy scenario", {
+  "somewhere over the rainbow": function(){
+    assert(false);
+  }
+}, my_cool_logger);
 ```
 
 ## What's the catch?

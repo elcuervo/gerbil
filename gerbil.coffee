@@ -1,40 +1,36 @@
 class Gerbil
-  success:  0
-  fail:     0
-  count:    0
+  success:    0
+  fail:       0
+  count:      0
   assertions: 0
 
-  constructor: (@description, @tests) ->
+  constructor: (@description, @tests, @logger = window.console) ->
 
   extract: (key, from) ->
-    value = from[key] || () ->
+    value = from[key] || (->)
     delete from[key]
     value
 
   run: ->
-    console.log @description
-    @setup   = this.extract "setup",   @tests
-    @before  = this.extract "before",  @tests
-    @after   = this.extract "after",   @tests
-    @cleanup = this.extract "cleanup", @tests
+    this.logger.log this.description
+    this.setup   = this.extract "setup",   this.tests
+    this.before  = this.extract "before",  this.tests
+    this.after   = this.extract "after",   this.tests
+    this.cleanup = this.extract "cleanup", this.tests
 
-    @setup()
-    this.exec key, value for key, value of @tests
-    @cleanup()
-    console.warn "Results for #{@description} #{@success}/#{@count} tests. #{@assertions} assertions"
+    this.setup()
+    this.exec key, value for key, value of this.tests
+    this.cleanup()
+    this.logger.warn "Results for #{this.description} #{this.success}/#{this.count} tests. #{this.assertions} assertions"
 
   assert_equal: (obj1, obj2) ->
-    return throw new Error("obj1 is #{obj1} and obj2 is #{obj2}") if !obj1 or !obj2
-    return throw new Error("types are different obj1: #{obj1.constructor}, obj2: #{obj2.constructor}") if obj1.constructor != obj2.constructor
+    throw new Error("obj1 is #{obj1} and obj2 is #{obj2}") if !obj1 or !obj2
+    throw new Error("types are different obj1: #{obj1.constructor}, obj2: #{obj2.constructor}") if obj1.constructor != obj2.constructor
 
     error = new Error("expected #{obj2} got #{obj1}")
     switch obj1.constructor
       when Array
-        if obj1.length == obj2.length
-          for key, value of obj1
-            throw error unless value == obj2[key]
-        else
-          throw error
+        throw error unless value == obj2[key] for key, value of obj1 if obj1.length == obj2.length
       when Number, String
         throw error unless obj1 == obj2
     current_scenario.assertions += 1
@@ -44,21 +40,21 @@ class Gerbil
     return throw new Error("assertion failed") if !expectation
 
   exec: (test_name, test) ->
-    @before()
+    this.before()
     try
-      initial_assertions = @assertions
+      initial_assertions = this.assertions
       test.apply(this)
-      @success  += 1
-      console.log " |-- #{test_name} SUCCESS (#{@assertions - initial_assertions} assertions)"
+      this.success  += 1
+      this.logger.log " |-- #{test_name} SUCCESS (#{this.assertions - initial_assertions} assertions)"
     catch error
-      @fail     += 1
-      console.error " |-- #{error}: #{test_name} FAILED"
+      this.fail     += 1
+      this.logger.error " |-- #{error}: #{test_name} FAILED"
     finally
-      @after()
-      @count    += 1
+      this.after()
+      this.count    += 1
 
-@scenario = (description, tests) ->
-  @current_scenario = new Gerbil(description, tests)
-  @assert = current_scenario.assert
-  @assert_equal = current_scenario.assert_equal
-  current_scenario.run()
+@scenario = (description, tests, logger) ->
+  @current_scenario = new Gerbil(description, tests, logger)
+  @assert = @current_scenario.assert
+  @assert_equal = @current_scenario.assert_equal
+  @current_scenario.run()
