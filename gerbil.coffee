@@ -1,10 +1,10 @@
-class Gerbil
+class @Gerbil
   success:    0
   fail:       0
   count:      0
   assertions: 0
 
-  constructor: (@description, @tests, @logger = window.console) ->
+  constructor: (@description, @tests, @logger = Gerbil.logger) ->
 
   extract: (key, from) ->
     value = from[key] || (->)
@@ -52,6 +52,8 @@ class Gerbil
     finally
       this.after()
       this.count    += 1
+
+Gerbil.logger = window.console
 
 @scenario = (description, tests, logger) ->
   @current_scenario = new Gerbil(description, tests, logger)

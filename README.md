@@ -49,11 +49,23 @@ var my_cool_logger = {
     alert(msg);
   },
 };
+
 scenario("Fancy scenario", {
   "somewhere over the rainbow": function(){
     assert(false);
   }
 }, my_cool_logger);
+
+// Change global logger
+
+Gerbil.logger = my_cool_logger;
+
+scenario("Fancy scenario is back", {
+  "somewhere over the double rainbow": function(){
+    assert(false);
+  }
+}, my_cool_logger);
+
 ```
 
 ## What's the catch?

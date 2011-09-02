@@ -1,6 +1,5 @@
 (function() {
-  var Gerbil;
-  Gerbil = (function() {
+  this.Gerbil = (function() {
     Gerbil.prototype.success = 0;
     Gerbil.prototype.fail = 0;
     Gerbil.prototype.count = 0;
@@ -8,7 +7,7 @@
     function Gerbil(description, tests, logger) {
       this.description = description;
       this.tests = tests;
-      this.logger = logger != null ? logger : window.console;
+      this.logger = logger != null ? logger : Gerbil.logger;
     }
     Gerbil.prototype.extract = function(key, from) {
       var value;
@@ -89,6 +88,7 @@
     };
     return Gerbil;
   })();
+  Gerbil.logger = window.console;
   this.scenario = function(description, tests, logger) {
     this.current_scenario = new Gerbil(description, tests, logger);
     this.assert = this.current_scenario.assert;
