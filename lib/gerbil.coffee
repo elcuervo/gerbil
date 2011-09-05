@@ -28,23 +28,29 @@
       throw new Error("obj1 is #{obj1} and obj2 is #{obj2}") if !obj1 or !obj2
       throw new Error("types are different obj1: #{obj1.constructor}, obj2: #{obj2.constructor}") if obj1.constructor != obj2.constructor
 
+      current_scenario.assertions += 1
       error = new Error("expected #{obj2} got #{obj1}")
       switch obj1.constructor
         when Array
           throw error unless value == obj2[key] for key, value of obj1 if obj1.length == obj2.length
         when Number, String
           throw error unless obj1 == obj2
-      current_scenario.assertions += 1
 
     assert: (expectation) ->
       current_scenario.assertions += 1
       return throw new Error("assertion failed") if !expectation
 
     assert_raise: (expected_error, fun) ->
+      current_scenario.assertions += 1
+
+      error = ""
       try
         fun()
+        error = "#{expected_error} was expected but nothing was raised"
       catch exception
-        throw new Error("#{expected_error} was expected got #{exception} instead") unless exception.constructor is expected_error
+        error = "#{expected_error} was expected got #{exception} instead" unless exception.constructor is expected_error
+
+      throw new Error(error) unless error == ""
 
     exec: (test_name, test) ->
       this.before()
