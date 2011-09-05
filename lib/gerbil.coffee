@@ -40,17 +40,17 @@
       current_scenario.assertions += 1
       return throw new Error("assertion failed") if !expectation
 
-    assert_raise: (expected_error, fun) ->
+    assert_throw: (expected_error, fun) ->
       current_scenario.assertions += 1
 
-      error = ""
+      error = false
       try
         fun()
-        error = "#{expected_error} was expected but nothing was raised"
+        error = "#{expected_error.name} was expected but nothing was raised"
       catch exception
         error = "#{expected_error} was expected got #{exception} instead" unless exception.constructor is expected_error
 
-      throw new Error(error) unless error == ""
+      throw new Error(error) if !error?
 
     exec: (test_name, test) ->
       this.before()
@@ -81,7 +81,7 @@
   @current_scenario = new Gerbil(description, tests, logger)
   @assert = @current_scenario.assert
   @assert_equal = @current_scenario.assert_equal
-  @assert_raise = @current_scenario.assert_raise
+  @assert_throw = @current_scenario.assert_throw
   @current_scenario.run()
 
 module.exports = @scenario if module?
