@@ -7,6 +7,25 @@ _n_. Gerbils: Inquisitive, friendly animals that rarely bite, TDD for the rest o
 Gerbil attemps to be an uber simple and minimalistic testing framework for javascript.
 It's written in coffeescript so be nice with me
 
+## Now with npm
+
+```bash
+$ npm install gerbil
+```
+
+You can now execute the tests with node without to depend on the browser
+
+```javascript
+var scenario = require('gerbil');
+scenario("Testing with node", {
+  "should work in a terminal": function(){
+    assert(true);
+  }
+});
+```
+
+![Console Errors](https://img.skitch.com/20110905-en17r48a8p59rrx2crc15dqf6a.jpg)
+
 ## Example
 
 ```javascript
@@ -81,6 +100,5 @@ And in the bottom you will find the summary
 
 ## TODO
   1. Workaround for tests using setTimeout
-  2. Validate exceptions
   3. Trigger events on tests
   4. Get a gerbil as a pet
