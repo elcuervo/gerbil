@@ -58,20 +58,20 @@ scenario("Fancy scenario", {
 
 // Change global logger
 
-Gerbil.logger = my_cool_logger;
+GerbilOptions.logger = my_cool_logger;
 
 scenario("Fancy scenario is back", {
   "somewhere over the double rainbow": function(){
     assert(false);
   }
-}, my_cool_logger);
+});
 
 ```
 
 ## What's the catch?
 
 The results are only shown in the console, the one from console.log
-Run it with an open inspector
+Run it with an open inspector or define a custom logger
 
 ![Console tests](https://img.skitch.com/20110803-ghqcq5urn8hx99n2s1u777hq58.jpg)
 
