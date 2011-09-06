@@ -19,5 +19,32 @@ scenario("Gerbil - Assertions", {
       })
     });
   },
+});
 
+var scenario_logger = {
+  counter: 0,
+  count: function(){ this.counter += 1; },
+}
+
+scenario("Gerbil - after, before, setup, cleanup", {
+  "setup": function(){
+    scenario_logger.count();
+  },
+
+  "before": function(){
+    scenario_logger.count();
+  },
+
+  "after": function(){
+    scenario_logger.count();
+  },
+
+  "cleanup": function(){
+    scenario_logger.count();
+    assert_equal(scenario_logger.counter, 6);
+  },
+
+  "should run tests": function(){ assert(true); },
+
+  "should run tests again": function(){ assert(true); }
 });
