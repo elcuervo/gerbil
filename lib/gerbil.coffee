@@ -1,4 +1,15 @@
 @scenario = (description, tests, logger) ->
+  GerbilOptions =
+    if exports?
+      logger: {
+        log:    (msg) -> console.log("\033[32m#{msg}\033[0m")
+        info:   (msg) -> console.info("\033[34m#{msg}\033[0m")
+        warn:   (msg) -> console.warn("\033[33m#{msg}\033[0m")
+        error:  (msg) -> console.error("\033[31m#{msg}\033[0m")
+      }
+    else
+      logger: console
+
   class @Gerbil
     success:    0
     fail:       0
@@ -23,6 +34,7 @@
       this.exec key, value for key, value of this.tests
       this.cleanup()
       this.logger.warn "Results for #{this.description} #{this.success}/#{this.count} tests. #{this.assertions} assertions"
+      process.exit(1) if this.fail > 0 if module?
 
     assert_equal: (obj1, obj2) ->
       throw new Error("obj1 is #{obj1} and obj2 is #{obj2}") if !obj1 or !obj2
@@ -65,18 +77,6 @@
       finally
         this.after()
         this.count    += 1
-
-  GerbilOptions =
-    if exports?
-      logger: {
-        log:    (msg) -> console.log("\033[32m#{msg}\033[0m")
-        info:   (msg) -> console.info("\033[34m#{msg}\033[0m")
-        warn:   (msg) -> console.warn("\033[33m#{msg}\033[0m")
-        error:  (msg) -> console.error("\033[31m#{msg}\033[0m")
-      }
-    else
-      logger: console
-
 
   @current_scenario = new Gerbil(description, tests, logger)
   @assert = @current_scenario.assert
