@@ -99,6 +99,7 @@ And in the bottom you will find the summary
 ![Console summary](https://img.skitch.com/20110803-ry5249hcg6n69y5gjfhaibgxj9.jpg)
 
 ## TODO
-  1. Workaround for tests using setTimeout
-  3. Trigger events on tests
-  4. Get a gerbil as a pet
+  1. Get a gerbil as a pet
+
+## Contributors
+  * [Daniel Cadenas](https://github.com/dcadenas)
