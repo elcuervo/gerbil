@@ -1,4 +1,6 @@
-scenario = require('../lib/gerbil.js');
+if(typeof module != 'undefined'){
+  scenario = require('../lib/gerbil.js');
+}
 
 scenario("Gerbil - Assertions", {
   "should be able to assert": function(){
