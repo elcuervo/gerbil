@@ -1,4 +1,4 @@
-if(typeof module != 'undefined'){
+if(typeof module == 'function'){
   scenario = require('../lib/gerbil.js');
 }
 
