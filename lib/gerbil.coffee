@@ -1,4 +1,4 @@
-@scenario = do ->
+scenario = do ->
     GerbilOptions =
       if exports?
         logger: {
@@ -85,4 +85,7 @@
       @assert_throw = @current_scenario.assert_throw
       @current_scenario.run()
 
-module.exports = @scenario if module?
+if module?
+  module.exports = scenario
+else
+  @scenario = scenario
