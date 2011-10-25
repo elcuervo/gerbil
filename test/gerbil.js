@@ -50,3 +50,17 @@ scenario("Gerbil - after, before, setup, cleanup", {
 
   "should run tests again": function(){ assert(true); }
 });
+
+
+scenario("Gerbil - setTimeout", {
+  "should work": function(){
+    var a = 1;
+    set_timeout(function(){
+      a++;
+      assert_equal(a, 3);
+      console.log(this);
+    });
+    a++;
+  }
+
+});

@@ -40,7 +40,7 @@
         throw new Error("obj1 is #{obj1} and obj2 is #{obj2}") if !obj1 or !obj2
         throw new Error("types are different obj1: #{obj1.constructor}, obj2: #{obj2.constructor}") if obj1.constructor != obj2.constructor
 
-        current_scenario.assertions += 1
+        @current_scenario.assertions += 1
         error = new Error("expected #{obj2} got #{obj1}")
         switch obj1.constructor
           when Array
@@ -49,8 +49,11 @@
             throw error unless obj1 == obj2
 
       assert: (expectation) ->
-        current_scenario.assertions += 1
+        @current_scenario.assertions += 1
         return throw new Error("assertion failed") if !expectation
+
+      set_timeout: (fn, milliseconds) ->
+        setTimeout((-> fn.apply(@current_scenario)), milliseconds)
 
       assert_throw: (expected_error, fun) ->
         current_scenario.assertions += 1
@@ -82,6 +85,7 @@
       @current_scenario = new Gerbil(description, tests, logger)
       @assert = @current_scenario.assert
       @assert_equal = @current_scenario.assert_equal
+      @set_timeout = @current_scenario.set_timeout
       @assert_throw = @current_scenario.assert_throw
       @current_scenario.run()
 
