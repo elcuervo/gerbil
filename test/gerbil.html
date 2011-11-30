@@ -2,7 +2,61 @@
   <head>
     <script type="text/javascript" src="../lib/gerbil.js"></script>
     <script type="text/javascript" src="gerbil.js"></script>
+    <script type="text/javascript" src="test.js"></script>
+    <script type="text/javascript">
+      var runTests = function() {
+        var results = document.querySelector("#results");
+        var ul = false;
+        var pretty_print = {
+          log: function(msg) {
+            var li = document.createElement("li");
+            li.className = "ok"
+
+            li.textContent = msg;
+            ul.appendChild(li);
+          },
+          info: function(msg) {
+            var h1 = document.createElement("h1");
+            ul = document.createElement("ul");
+
+            h1.textContent = msg;
+            results.appendChild(h1);
+            results.appendChild(ul);
+          },
+          warn: function(msg) {
+            var h2 = document.createElement("h2");
+            h2.textContent = msg;
+            results.appendChild(h2);
+          },
+          error: function(msg) {
+            var li = document.createElement("li");
+
+            li.className = "error"
+            li.textContent = msg;
+            ul.appendChild(li);
+         },
+        };
+
+        scenario("Showing a pretty print for the tests", {
+          "setup": function() {
+          },
+          "it should show a success message": function(g) {
+            g.assert(true);
+            },
+            "it should show an error message": function(g) {
+              g.assert(false);
+            }
+        }, pretty_print);
+      }
+    </script>
+    <style type="text/css">
+      li { list-style-type: none }
+      .error { color: red; }
+      .ok { color: green; }
+    </style>
   </head>
-  <body>
+  <body onload="runTests()">
+    <div id="results">
+    </div>
   </body>
 </html>
