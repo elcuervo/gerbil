@@ -1,7 +1,7 @@
 {
   "name": "gerbil",
   "description": "Gerbil: Inquisitive, friendly animals that rarely bite, TDD for the rest of us",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "author": "elCuervo <elcuervo@elcuervo.co>",
   "keywords": ["tdd", "testing", "gerbil", "simple"],
   "directories": {"lib": "./lib", "test": "./test"},
