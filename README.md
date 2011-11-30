@@ -18,8 +18,8 @@ You can now execute the tests with node without to depend on the browser
 ```javascript
 var scenario = require('gerbil');
 scenario("Testing with node", {
-  "should work in a terminal": function(){
-    assert(true);
+  "should work in a terminal": function(g){
+    g.assert(true);
   }
 });
 ```
@@ -30,30 +30,30 @@ scenario("Testing with node", {
 
 ```javascript
 scenario("This is my scenario", {
-  "setup":  function(){
+  "setup":  function() {
     // When scenario starts
     window.some_class = new MagicClass;
   },
-  "before": function(){
+  "before": function() {
     // Before every test
     some_class.magic_magic();
   },
-  "after":  function(){
+  "after":  function() {
     // After every test
     some_class.clean();
   },
-  "cleanup": function(){
+  "cleanup": function() {
     // When the scenario ends
     window.some_class = false;
   },
 
-  "MagicClass should have a length": function(){
+  "MagicClass should have a length": function(g){
     some_class.add(1);
-    assert_equal(some_class.length, 1);
+    g.assert_equal(some_class.length, 1);
   },
 
-  "MagicClass should be valid": function (){
-    assert(some_class.valid);
+  "MagicClass should be valid": function (g) {
+    g.assert(some_class.valid);
   }
 });
 ```
@@ -64,33 +64,25 @@ scenario("This is my scenario", {
 var my_cool_logger = {
   "warn":   function(msg){},
   "log":    function(msg){},
+  "info":   function(msg){},
   "error":  function(msg){
     alert(msg);
   },
 };
 
 scenario("Fancy scenario", {
-  "somewhere over the rainbow": function(){
+  "somewhere over the rainbow": function(g){
     assert(false);
   }
 }, my_cool_logger);
-
-// Change global logger
-
-GerbilOptions.logger = my_cool_logger;
-
-scenario("Fancy scenario is back", {
-  "somewhere over the double rainbow": function(){
-    assert(false);
-  }
-});
-
 ```
 
 ## What's the catch?
 
-The results are only shown in the console, the one from console.log
-Run it with an open inspector or define a custom logger
+The results are only shown in the console, the one from console.log if you use
+it in a browser.
+Run it with an open inspector or define a custom logger if you want prettier
+results.
 
 ![Console tests](https://img.skitch.com/20110803-ghqcq5urn8hx99n2s1u777hq58.jpg)
 
