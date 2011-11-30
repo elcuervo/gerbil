@@ -58,7 +58,6 @@ scenario("Gerbil - setTimeout", {
     g.set_timeout(function(){
       a++;
       g.assert_equal(a, 3);
-      console.log(this);
     });
     a++;
   }
