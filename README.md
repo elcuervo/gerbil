@@ -53,28 +53,28 @@ scenario("Some usefull stuff that needs to work", {
 scenario("This is my scenario", {
   "setup":  function() {
     // When scenario starts
-    this.some_class = new MagicClass;
+    this.someThing = new Thing;
   },
   "before": function() {
     // Before every test
-    this.some_class.magic_magic();
+    this.someThing.magic_magic();
   },
   "after":  function() {
     // After every test
-    this.some_class.clean();
+    this.someThing.clean();
   },
   "cleanup": function() {
     // When the scenario ends
-    this.some_class = false;
+    this.someThing = false;
   },
 
   "MagicClass should have a length": function(g){
-    this.some_class.add(1);
-    g.assert_equal(this.some_class.length, 1);
+    this.someThing.add(1);
+    g.assert_equal(this.someThing.length, 1);
   },
 
   "MagicClass should be valid": function (g) {
-    g.assert(this.some_class.valid);
+    g.assert(this.someThing.valid);
   }
 });
 ```
