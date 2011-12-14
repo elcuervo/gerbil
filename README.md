@@ -24,7 +24,28 @@ scenario("Testing with node", {
 });
 ```
 
-![Console Errors](https://img.skitch.com/20110905-en17r48a8p59rrx2crc15dqf6a.jpg)
+![Console Errors](http://elcuervo.co/images/posts/gerbil-tdd-for-the-rest-of-us/console-output.png)
+
+## Walkthrough
+
+```javascript
+// Name the scenario you want to test and pass an object with your tests.
+scenario("Some usefull stuff that needs to work", {
+  // Reserved names are 'setup', 'before', 'after' and 'cleanup'. They define
+  // the steps to be executed.
+  //
+  // Every test gets one parameter, this is the test suite itself.
+  // Modifying 'this' will affect the context in the tests, it's useful when
+  // using 'setup' to initialize some state.
+  'setup': function(g) {
+    this.validName = 'Gerbil';
+  },
+  // Within the test 'this' gets the config defined in 'setup'
+  'should get the correct name': function(g) {
+    g.assert_equal(this.validName, 'Gerbil');
+  },
+});
+```
 
 ## Example
 
@@ -32,28 +53,28 @@ scenario("Testing with node", {
 scenario("This is my scenario", {
   "setup":  function() {
     // When scenario starts
-    window.some_class = new MagicClass;
+    this.some_class = new MagicClass;
   },
   "before": function() {
     // Before every test
-    some_class.magic_magic();
+    this.some_class.magic_magic();
   },
   "after":  function() {
     // After every test
-    some_class.clean();
+    this.some_class.clean();
   },
   "cleanup": function() {
     // When the scenario ends
-    window.some_class = false;
+    this.some_class = false;
   },
 
   "MagicClass should have a length": function(g){
-    some_class.add(1);
-    g.assert_equal(some_class.length, 1);
+    this.some_class.add(1);
+    g.assert_equal(this.some_class.length, 1);
   },
 
   "MagicClass should be valid": function (g) {
-    g.assert(some_class.valid);
+    g.assert(this.some_class.valid);
   }
 });
 ```
@@ -83,12 +104,9 @@ The results are only shown in the console, the one from console.log if you use
 it in a browser.
 Run it with an open inspector or define a custom logger if you want prettier
 results.
-
-![Console tests](https://img.skitch.com/20110803-ghqcq5urn8hx99n2s1u777hq58.jpg)
-
 And in the bottom you will find the summary
 
-![Console summary](https://img.skitch.com/20110803-ry5249hcg6n69y5gjfhaibgxj9.jpg)
+![Browser tests](http://elcuervo.co/images/posts/gerbil-tdd-for-the-rest-of-us/browser-output.png)
 
 ## TODO
   1. Get a gerbil as a pet
