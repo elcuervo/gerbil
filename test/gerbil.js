@@ -60,5 +60,13 @@ scenario("Gerbil - setTimeout", {
     });
     a++;
   }
+});
 
+scenario('Gerbil - context access for tests', {
+  'setup': function(g) {
+    this.value = 1;
+  },
+  'should access context': function(g) {
+    g.assert_equal(this.value, 1);
+  }
 });
