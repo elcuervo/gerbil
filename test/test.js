@@ -7,8 +7,6 @@ scenario("Validate some stuff", {
   },
   "test": function(g){
     g.assert(true);
-    g.set_timeout(function(){
-      g.assert_equal(this.a, 2);
-    }, 2000, this);
+    g.assert(false);
   }
 });
