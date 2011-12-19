@@ -2,10 +2,15 @@ if(typeof module != 'undefined')
   var scenario = require('../lib/gerbil');
 
 scenario("Validate some stuff", {
-  "before": function(){
+  "before": function() {
     this.a = 2;
   },
-  "test": function(g){
+
+  "stuff": function(g) {
+    return g.pending("TODO");
+  },
+
+  "test": function(g) {
     g.assert(true);
     g.assert(false);
   }

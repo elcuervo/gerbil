@@ -62,6 +62,13 @@ scenario("Gerbil - setTimeout", {
   }
 });
 
+scenario("Gerbil - special methods", {
+  'pending': function(g) {
+    return g.pending("This is pending somehow");
+    g.assert(false);
+  }
+});
+
 scenario('Gerbil - context access for tests', {
   'setup': function(g) {
     this.value = 1;
