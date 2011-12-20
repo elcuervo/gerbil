@@ -16,7 +16,8 @@ $ npm install gerbil
 You can now execute the tests with node without to depend on the browser
 
 ```javascript
-var scenario = require('gerbil');
+var scenario = require('gerbil').scenario;
+
 scenario("Testing with node", {
   "should work in a terminal": function(g){
     g.assert(true);
@@ -44,6 +45,14 @@ scenario("Some usefull stuff that needs to work", {
   'should get the correct name': function(g) {
     g.assert_equal(this.validName, 'Gerbil');
   },
+
+  'in the future': function(g) {
+    this.time = new Date().getTime();
+
+    g.setTimeout(function() {
+      g.assert(new Date().getTime() > this.time);
+    }, 1000);
+  }
 });
 ```
 
@@ -68,12 +77,12 @@ scenario("This is my scenario", {
     this.someThing = false;
   },
 
-  "MagicClass should have a length": function(g){
+  "MagicThing should have a length": function(g) {
     this.someThing.add(1);
     g.assert_equal(this.someThing.length, 1);
   },
 
-  "MagicClass should be valid": function (g) {
+  "MagicThing should be valid": function(g) {
     g.assert(this.someThing.valid);
   }
 });
@@ -82,7 +91,7 @@ scenario("This is my scenario", {
 ## Custom logger
 
 ```javascript
-var my_cool_logger = {
+var myCoolLogger = {
   "warn":   function(msg){},
   "log":    function(msg){},
   "info":   function(msg){},
@@ -92,10 +101,10 @@ var my_cool_logger = {
 };
 
 scenario("Fancy scenario", {
-  "somewhere over the rainbow": function(g){
-    assert(false);
+  "somewhere over the rainbow": function(g) {
+    g.assert(false);
   }
-}, my_cool_logger);
+}, myCoolLogger);
 ```
 
 ## What's the catch?
