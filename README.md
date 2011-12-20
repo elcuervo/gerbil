@@ -25,9 +25,9 @@ scenario("Testing with node", {
 });
 ```
 
-![Console Errors](http://elcuervo.co/images/posts/gerbil-tdd-for-the-rest-of-us/console-output.png)
+![Console Errors](http://elcuervo.co/images/posts/gerbil-tdd-for-the-rest-of-us/console-output.png?1)
 
-![Console Errors](http://elcuervo.co/images/posts/gerbil-tdd-for-the-rest-of-us/error-output.png)
+![Console Errors](http://elcuervo.co/images/posts/gerbil-tdd-for-the-rest-of-us/error-output.png?2)
 
 ## Walkthrough
 
@@ -117,7 +117,7 @@ Run it with an open inspector or define a custom logger if you want prettier
 results.
 And in the bottom you will find the summary
 
-![Browser tests](http://elcuervo.co/images/posts/gerbil-tdd-for-the-rest-of-us/browser-output.png)
+![Browser tests](http://elcuervo.co/images/posts/gerbil-tdd-for-the-rest-of-us/browser-output.png?1)
 
 ## TODO
   1. Get a gerbil as a pet
