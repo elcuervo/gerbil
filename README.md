@@ -27,6 +27,8 @@ scenario("Testing with node", {
 
 ![Console Errors](http://elcuervo.co/images/posts/gerbil-tdd-for-the-rest-of-us/console-output.png)
 
+![Console Errors](http://elcuervo.co/images/posts/gerbil-tdd-for-the-rest-of-us/error-output.png)
+
 ## Walkthrough
 
 ```javascript
