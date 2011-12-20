@@ -1,5 +1,5 @@
 if(typeof module != 'undefined')
-  var scenario = require('../lib/gerbil');
+  var scenario = require('../lib/gerbil').scenario;
 
 scenario("Validate some stuff", {
   "before": function() {
@@ -13,5 +13,9 @@ scenario("Validate some stuff", {
   "test": function(g) {
     g.assert(true);
     g.assert(false);
+  },
+
+  "cuteness": function(g) {
+    g.assert(true);
   }
 });

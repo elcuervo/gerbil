@@ -26,10 +26,10 @@ scenario("Gerbil - Assertions", {
 scenario("Gerbil - setTimeout", {
   "should work": function(g){
     var a = 1;
-    g.set_timeout(function(){
+    g.setTimeout(function(){
       a++;
       g.assert_equal(a, 3);
-    });
+    }, 1000);
     a++;
   }
 });
