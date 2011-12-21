@@ -22,6 +22,11 @@ scenario("Testing with node", {
     g.assert(true);
   }
 });
+
+// Or if you want to access some global Gerbil stuff
+
+var Gerbil = require('gerbil');
+var scenario = Gerbil.scenario;
 ```
 
 ![Console Errors](http://elcuervo.co/images/posts/gerbil-tdd-for-the-rest-of-us/console-output.png?1)
@@ -106,6 +111,10 @@ scenario("Fancy scenario", {
     g.assert(false);
   }
 }, myCoolLogger);
+
+// Or if you want to affect every gerbil scenario
+
+Gerbil.logger = myCoolLogger;
 ```
 
 ## What's the catch?

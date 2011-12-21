@@ -7,7 +7,7 @@
       var runTests = function() {
         var results = document.querySelector("#results");
         var ul = false;
-        var pretty_print = {
+        var prettyPrint = {
           log: function(msg) {
             var li = document.createElement("li");
             li.className = "ok"
@@ -37,6 +37,8 @@
          },
         };
 
+        Gerbil.logger = prettyPrint;
+
         scenario("Showing a pretty print for the tests", {
           "setup": function() {
           },
@@ -46,7 +48,7 @@
             "it should show an error message": function(g) {
               g.assert(false);
             }
-        }, pretty_print);
+        });
       }
     </script>
     <style type="text/css">

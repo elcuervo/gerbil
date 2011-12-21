@@ -1,5 +1,14 @@
-if(typeof module != 'undefined')
-  var scenario = require('../lib/gerbil').scenario;
+if(typeof module != 'undefined') {
+  var Gerbil = require('../lib/gerbil');
+  var scenario = Gerbil.scenario;
+}
+
+Gerbil.logger = {
+  log: function(msg) { console.log(msg); },
+  info: function(msg) { console.info(msg); },
+  warn: function(msg) { console.warn(msg); },
+  error: function(msg) { console.error(msg); }
+};
 
 scenario("Validate some stuff", {
   "before": function() {
