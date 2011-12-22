@@ -3,13 +3,6 @@ if(typeof module != 'undefined') {
   var scenario = Gerbil.scenario;
 }
 
-Gerbil.logger = {
-  log: function(msg) { console.log(msg); },
-  info: function(msg) { console.info(msg); },
-  warn: function(msg) { console.warn(msg); },
-  error: function(msg) { console.error(msg); }
-};
-
 scenario("Validate some stuff", {
   "before": function() {
     this.a = 2;
@@ -21,10 +14,15 @@ scenario("Validate some stuff", {
 
   "test": function(g) {
     g.assert(true);
-    g.assert(false);
+    g.assert_equal(1);
   },
 
   "cuteness": function(g) {
     g.assert(true);
+  },
+
+  "take a long time": function(g) {
+    for(var i = 0; i < 10000000; i++) {}
+    g.assert_equal(i, 10000000);
   }
 });
