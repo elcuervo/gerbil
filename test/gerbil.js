@@ -24,13 +24,22 @@ scenario("Gerbil - Assertions", {
 });
 
 scenario("Gerbil - setTimeout", {
-  "should work": function(g){
+  'setup': function() {
+    this.name = 'timeout';
+  },
+  "should access gerbil test scenario": function(g){
     var a = 1;
     g.setTimeout(function(){
       a++;
       g.assertEqual(a, 3);
     }, 1000);
     a++;
+  },
+
+  'should access context': function(g) {
+    g.setTimeout(function() {
+      g.assertEqual(this.name, 'timeout');
+    }, 1000);
   }
 });
 
