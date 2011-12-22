@@ -9,14 +9,14 @@ scenario("Gerbil - Assertions", {
   },
 
   "should be able to assert a false statement": function(g){
-    g.assert_throw(Error, function(){
+    g.assertThrow(Error, function(){
       g.assert(false)
     })
   },
 
-  "should fail when an assert_throw block doesn't raise an exception": function(g){
-    g.assert_throw(Error, function(){
-      g.assert_throw(Error, function(){
+  "should fail when an assertThrow block doesn't raise an exception": function(g){
+    g.assertThrow(Error, function(){
+      g.assertThrow(Error, function(){
         //we are not raising anything
       })
     });
@@ -28,7 +28,7 @@ scenario("Gerbil - setTimeout", {
     var a = 1;
     g.setTimeout(function(){
       a++;
-      g.assert_equal(a, 3);
+      g.assertEqual(a, 3);
     }, 1000);
     a++;
   }
@@ -46,6 +46,6 @@ scenario('Gerbil - context access for tests', {
     this.value = 1;
   },
   'should access context': function(g) {
-    g.assert_equal(this.value, 1);
+    g.assertEqual(this.value, 1);
   }
 });

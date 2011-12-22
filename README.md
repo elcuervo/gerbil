@@ -49,7 +49,7 @@ scenario("Some usefull stuff that needs to work", {
   },
   // Within the test 'this' gets the config defined in 'setup'
   'should get the correct name': function(g) {
-    g.assert_equal(this.validName, 'Gerbil');
+    g.assertEqual(this.validName, 'Gerbil');
   },
 
   'in the future': function(g) {
@@ -85,7 +85,7 @@ scenario("This is my scenario", {
 
   "MagicThing should have a length": function(g) {
     this.someThing.add(1);
-    g.assert_equal(this.someThing.length, 1);
+    g.assertEqual(this.someThing.length, 1);
   },
 
   "MagicThing should be valid": function(g) {

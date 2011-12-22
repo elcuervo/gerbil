@@ -14,7 +14,7 @@ scenario("Validate some stuff", {
 
   "test": function(g) {
     g.assert(true);
-    g.assert_equal(1);
+    g.assertEqual(1);
   },
 
   "cuteness": function(g) {
@@ -23,6 +23,6 @@ scenario("Validate some stuff", {
 
   "take a long time": function(g) {
     for(var i = 0; i < 10000000; i++) {}
-    g.assert_equal(i, 10000000);
+    g.assertEqual(i, 10000000);
   }
 });
