@@ -7,15 +7,39 @@
       var runTests = function() {
         var results = document.querySelector("#results");
         var ul = false;
+        var pre = document.createElement("pre");
         var prettyPrint = {
-          log: function(msg) {
+          ok: function(msg) {
             var li = document.createElement("li");
             li.className = "ok"
 
-            li.textContent = msg;
+            var content = pre.cloneNode();
+            content.textContent = msg;
+
+            li.appendChild(content);
             ul.appendChild(li);
           },
-          info: function(msg) {
+          pending: function(msg) {
+            var li = document.createElement("li");
+            li.className = "pending"
+
+            var content = pre.cloneNode();
+            content.textContent = msg;
+
+            li.appendChild(content);
+            ul.appendChild(li);
+         },
+          fail: function(msg) {
+            var li = document.createElement("li");
+            li.className = "error"
+
+            var content = pre.cloneNode();
+            content.textContent = msg;
+
+            li.appendChild(content);
+            ul.appendChild(li);
+         },
+          scenario: function(msg) {
             var h1 = document.createElement("h1");
             ul = document.createElement("ul");
 
@@ -23,27 +47,23 @@
             results.appendChild(h1);
             results.appendChild(ul);
           },
-          warn: function(msg) {
+          summary: function(msg) {
             var h2 = document.createElement("h2");
             h2.textContent = msg;
             results.appendChild(h2);
           },
-          error: function(msg) {
-            var li = document.createElement("li");
-
-            li.className = "error"
-            li.textContent = msg;
-            ul.appendChild(li);
-         },
         };
 
-        Gerbil.logger = prettyPrint;
+        Gerbil.formatter = prettyPrint;
 
         scenario("Showing a pretty print for the tests", {
           "setup": function() {
           },
           "it should show a success message": function(g) {
             g.assert(true);
+          },
+          "it should show a postergated test": function(g) {
+            g.pending("this test is pending");
           },
           "it should show an error message": function(g) {
             g.assert(false);
@@ -54,6 +74,7 @@
     <style type="text/css">
       li { list-style-type: none }
       .error { color: red; }
+      .pending { color: #ffaa00; }
       .ok { color: green; }
     </style>
   </head>
