@@ -8,8 +8,12 @@ scenario("Validate some stuff", {
     this.a = 2;
   },
 
-  "stuff": function(g) {
+  "this is a pending test": function(g) {
     return g.pending("TODO");
+  },
+
+  "this is another pending test": function(g) {
+    return g.pending()
   },
 
   "test": function(g) {
