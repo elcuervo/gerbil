@@ -62,13 +62,9 @@ scenario('Gerbil - context access for tests', {
 scenario('Gerbil - asyncronous code', {
   'should be able to test asyncronous code': function(g) {
     var asyncStuff = function() {
-      this.callbacks = {};
-      this.numer = null;
-
-      this.random = function() {
-        return Math.floor(Math.random()*11);
-      }
+      this.callbacks = null;
     };
+
     asyncStuff.prototype = {
       eventually: function(fn) {
         this.callback = fn;
