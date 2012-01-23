@@ -24,5 +24,11 @@ scenario("Validate some stuff", {
   "take a long time": function(g) {
     for(var i = 0; i < 10000000; i++) {}
     g.assertEqual(i, 10000000);
+  },
+
+  "show error on async code": function(g) {
+    g.async(function() {
+      throw Error();
+    });
   }
 });
