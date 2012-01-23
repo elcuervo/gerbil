@@ -129,38 +129,42 @@ scenario("This is my scenario", {
 });
 ```
 
-## Custom logger
+## Custom formatter
 
 ```javascript
-var myCoolLogger = {
-  // Summary and pending tests.
-  "warn":   function(msg){},
-  // When good things happend.
-  "log":    function(msg){},
-  // The header of the test.
-  "info":   function(msg){},
-  // When bad things happend
-  "error":  function(msg){
-    alert(msg);
-  },
+var myCoolFormatter = {
+  // Passing tests
+  "ok": function(msg) {},
+
+  // Failing tests
+  "fail": function(msg) {},
+
+  // Pending tests
+  "pending": function(msg) {},
+
+  // The start of a scenario
+  "scenario": function(msg) {},
+
+  // Report at the end of a scenario
+  "summary": function(msg) {}
 };
 
 scenario("Fancy scenario", {
   "somewhere over the rainbow": function(g) {
     g.assert(false);
   }
-}, myCoolLogger);
+}, myCoolFormatter);
 
 // Or if you want to affect every gerbil scenario
 
-Gerbil.logger = myCoolLogger;
+Gerbil.formatter = myCoolFormatter;
 ```
 
 ## What's the catch?
 
 The results are only shown in the console, the one from console.log if you use
 it in a browser.
-Run it with an open inspector or define a custom logger if you want prettier
+Run it with an open inspector or define a custom formatter if you want prettier
 results.
 And in the bottom you will find the summary
 
