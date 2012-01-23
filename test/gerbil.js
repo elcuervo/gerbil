@@ -58,3 +58,47 @@ scenario('Gerbil - context access for tests', {
     g.assertEqual(this.value, 1);
   }
 });
+
+scenario('Gerbil - asyncronous code', {
+  'setup': function() {
+    this.context = true;
+  },
+
+  'should be able to test asyncronous code': function(g) {
+    var asyncStuff = function() {
+      this.callbacks = {};
+      this.numer = null;
+
+      this.random = function() {
+        return Math.floor(Math.random()*11);
+      }
+    };
+    asyncStuff.prototype = {
+      eventually: function(fn) {
+        this.callback = fn;
+      },
+
+      exec: function() {
+        setTimeout(function(c) {
+          c.callback();
+        }, 500, this);
+      }
+    };
+
+    g.async(function() {
+      var async = new asyncStuff;
+      async.eventually(function() {
+        g.assert(true);
+        g.end();
+      });
+      async.exec();
+    });
+  },
+
+  'should not lose context during async execution': function(g) {
+    g.async(function() {
+      g.assertEqual(this.context, true);
+      g.end();
+    });
+  }
+});

@@ -52,13 +52,48 @@ scenario("Some usefull stuff that needs to work", {
     g.assertEqual(this.validName, 'Gerbil');
   },
 
+  // Test in the feature, usefull to test future events or timers.
   'in the future': function(g) {
     this.time = new Date().getTime();
 
     g.setTimeout(function() {
       g.assert(new Date().getTime() > this.time);
     }, 1000);
+  },
+
+  // Test async code.
+  //
+  // Using the async function you can control the status of the test. This is
+  // really usefull when you are testing callbacks.
+  // But remember, it's your responsability to end() the test.
+  'should be able to test asyncronous code': function(g) {
+    var asyncStuff = function() {
+      this.callback = null;
+    };
+
+    asyncStuff.prototype = {
+      eventually: function(fn) {
+        this.callback = fn;
+      },
+
+      exec: function() {
+        setTimeout(function(c) {
+          c.callback();
+        }, 500, this);
+      }
+    };
+
+    g.async(function() {
+      var async = new asyncStuff;
+      async.eventually(function() {
+        g.assert(true);
+        // end() will end the current scenario and trigger a summary
+        g.end();
+      });
+      async.exec();
+    });
   }
+
 });
 ```
 
@@ -98,9 +133,13 @@ scenario("This is my scenario", {
 
 ```javascript
 var myCoolLogger = {
+  // Summary and pending tests.
   "warn":   function(msg){},
+  // When good things happend.
   "log":    function(msg){},
+  // The header of the test.
   "info":   function(msg){},
+  // When bad things happend
   "error":  function(msg){
     alert(msg);
   },
