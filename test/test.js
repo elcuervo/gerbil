@@ -28,7 +28,7 @@ scenario("Validate some stuff", {
 
   "show error on async code": function(g) {
     g.async(function() {
-      throw Error();
+      g.assert(false);
     });
   }
 });
