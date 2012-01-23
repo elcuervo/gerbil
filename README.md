@@ -12,6 +12,8 @@ Gerbil attemps to be an uber simple and minimalistic testing framework for javas
 $ npm install gerbil
 ```
 
+Or just include the .js and run tests within a normal browser.
+
 You can now execute the tests with node without to depend on the browser
 
 ```javascript
@@ -28,6 +30,28 @@ scenario("Testing with node", {
 var Gerbil = require('gerbil');
 var scenario = Gerbil.scenario;
 ```
+
+## What it's included?
+
+### assert
+Good ol' assert, checks boolean.
+
+### assertEqual
+Just like assert but checks types AND value.
+
+### assertThrow
+Asserts the throw of an exception.
+
+### pending
+Mark the test as pending.
+
+### setTimeout
+Run the test within a time.
+
+### async
+Run async code. Eg. callbacks, timers.
+
+## Example output
 
 ![Console Errors](http://elcuervo.co/images/posts/gerbil-tdd-for-the-rest-of-us/console-output.png?1)
 
