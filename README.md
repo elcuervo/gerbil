@@ -174,4 +174,5 @@ And in the bottom you will find the summary
   1. Get a gerbil as a pet
 
 ## Contributors
+  * [foca](https://github.com/foca)
   * [Daniel Cadenas](https://github.com/dcadenas)
