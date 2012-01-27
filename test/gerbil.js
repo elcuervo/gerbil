@@ -103,3 +103,17 @@ scenario('Gerbil - asyncronous code', {
   }
 
 });
+
+scenario('Gerbil - config object + callback', {
+  'config': function(c) {
+    c.start = function(o) {
+    };
+
+    c.finish = function(results) {
+    };
+  },
+
+  'test': function(g) {
+    g.assert(true);
+  }
+});

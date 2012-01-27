@@ -54,10 +54,12 @@
           },
         };
 
-        Gerbil.formatter = prettyPrint;
-
         scenario("Showing a pretty print for the tests", {
-          "setup": function() {
+          "config": function(c) {
+            c.formatter = prettyPrint;
+            c.start = function(o) {
+              console.log(o);
+            };
           },
           "it should show a success message": function(g) {
             g.assert(true);

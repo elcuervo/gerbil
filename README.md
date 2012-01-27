@@ -153,7 +153,7 @@ scenario("This is my scenario", {
 });
 ```
 
-## Custom formatter
+## Scenario config and global config.
 
 ```javascript
 var myCoolFormatter = {
@@ -174,14 +174,41 @@ var myCoolFormatter = {
 };
 
 scenario("Fancy scenario", {
+  "config": function(c) {
+    c.formatter = myCoolFormatter;
+  },
   "somewhere over the rainbow": function(g) {
     g.assert(false);
   }
-}, myCoolFormatter);
+});
 
 // Or if you want to affect every gerbil scenario
 
-Gerbil.formatter = myCoolFormatter;
+Gerbil.globalConfig = {
+  formatter: myCoolFormatter
+}
+```
+
+### Callbacks
+
+Withing the config object you can add two types of callbacks, 'start' and
+'finish'. This can help you to trigger events after the scenario finished or a
+nice sand clock when starts.
+
+```javascript
+scenario('configuration', {
+  'config': function(c) {
+    c.start = function(object) {};
+    c.finish = function(results) {};
+  }
+});
+
+// Ofcourse you can define then globally:
+
+Gerbil.globalConfig = {
+  start: function(object) {},
+  finish: function(results) {}
+};
 ```
 
 ## What's the catch?
