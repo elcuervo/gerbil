@@ -30,6 +30,7 @@ scenario("Testing with node", {
 var Gerbil = require('gerbil');
 var scenario = Gerbil.scenario;
 ```
+---
 
 ## What it's included?
 
@@ -50,6 +51,8 @@ Run the test within a time.
 
 ### async
 Run async code. Eg. callbacks, timers.
+
+---
 
 ## Example output
 
@@ -152,6 +155,7 @@ scenario("This is my scenario", {
   }
 });
 ```
+---
 
 ## Scenario config and global config.
 
