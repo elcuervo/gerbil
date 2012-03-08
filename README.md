@@ -1,5 +1,7 @@
 # Gerbil
 
+[![Build Status](https://secure.travis-ci.org/elcuervo/gerbil.png?branch=master)](http://travis-ci.org/elcuervo/gerbil)
+
 ![Gerbil!](http://www.petsworld.co.uk/images/gerbil.jpg)
 
 _n_. Gerbils: Inquisitive, friendly animals that rarely bite, TDD for the rest of us

@@ -11,5 +11,8 @@
       "url": "git://github.com/elcuervo/gerbil.git"
     }
   ],
-  "main": "./lib/gerbil.js"
+  "main": "./lib/gerbil.js",
+  "scripts": {
+    "test": "node test/gerbil.js"
+  }
 }
