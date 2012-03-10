@@ -66,7 +66,7 @@ Run async code. Eg. callbacks, timers.
 
 ```javascript
 // Name the scenario you want to test and pass an object with your tests.
-scenario("Some usefull stuff that needs to work", {
+scenario("Some useful stuff that needs to work", {
   // Reserved names are 'setup', 'before', 'after' and 'cleanup'. They define
   // the steps to be executed.
   //
@@ -81,7 +81,7 @@ scenario("Some usefull stuff that needs to work", {
     g.assertEqual(this.validName, 'Gerbil');
   },
 
-  // Test in the feature, usefull to test future events or timers.
+  // Test in the feature, useful to test future events or timers.
   'in the future': function(g) {
     this.time = new Date().getTime();
 
@@ -93,7 +93,7 @@ scenario("Some usefull stuff that needs to work", {
   // Test async code.
   //
   // Using the async function you can control the status of the test. This is
-  // really usefull when you are testing callbacks.
+  // really useful when you are testing callbacks.
   // But remember, it's your responsability to end() the test.
   'should be able to test asyncronous code': function(g) {
     var asyncStuff = function() {
@@ -199,7 +199,7 @@ Gerbil.globalConfig = {
 
 Withing the config object you can add two types of callbacks, 'start' and
 'finish'. This can help you to trigger events after the scenario finished or a
-nice sand clock when starts.
+nice sand clock when it starts.
 
 ```javascript
 scenario('configuration', {
@@ -209,7 +209,7 @@ scenario('configuration', {
   }
 });
 
-// Ofcourse you can define then globally:
+// Of course you can define then globally:
 
 Gerbil.globalConfig = {
   start: function(object) {},
