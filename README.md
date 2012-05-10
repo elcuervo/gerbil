@@ -45,6 +45,9 @@ Just like assert but checks types AND value.
 ### assertThrow
 Asserts the throw of an exception.
 
+### assertType
+Asserts the type of the object to evaluate.
+
 ### pending
 Mark the test as pending.
 
