@@ -13,7 +13,7 @@ scenario("Validate some stuff", {
   },
 
   "this is another pending test": function(g) {
-    return g.pending()
+    return g.pending();
   },
 
   "test": function(g) {
@@ -34,5 +34,12 @@ scenario("Validate some stuff", {
     g.async(function() {
       g.assert(false);
     });
+  },
+
+  "show improved stack trace": function(g) {
+    var f = function() {
+      throw Error();
+    };
+    g.assert(f());
   }
 });
