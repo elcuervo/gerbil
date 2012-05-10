@@ -21,6 +21,16 @@ scenario("Gerbil - Assertions", {
       })
     });
   },
+
+  "should be able to validate the type of an object": function(g) {
+    g.assertType(Function, function() {});
+    g.assertType(Number, 42);
+    g.assertType(String, 'Gerbil');
+
+    g.assertThrow(Error, function() {
+      g.assertType(Function, 42);
+    });
+  }
 });
 
 scenario("Gerbil - setTimeout", {
@@ -102,18 +112,4 @@ scenario('Gerbil - asyncronous code', {
     });
   }
 
-});
-
-scenario('Gerbil - config object + callback', {
-  'config': function(c) {
-    c.start = function(o) {
-    };
-
-    c.finish = function(results) {
-    };
-  },
-
-  'test': function(g) {
-    g.assert(true);
-  }
 });
