@@ -16,7 +16,7 @@ $ npm install gerbil
 
 Or just include the .js and run tests within a normal browser.
 
-You can now execute the tests with node without to depend on the browser
+You can now execute the tests with node without depending on the browser
 
 ```javascript
 var scenario = require('gerbil').scenario;
@@ -34,7 +34,7 @@ var scenario = Gerbil.scenario;
 ```
 ---
 
-## What it's included?
+## What's included?
 
 ### assert
 Good ol' assert, checks boolean.
@@ -43,19 +43,19 @@ Good ol' assert, checks boolean.
 Just like assert but checks types AND value.
 
 ### assertThrow
-Asserts the throw of an exception.
+Asserts an exception throw.
 
 ### assertType
 Asserts the type of the object to evaluate.
 
 ### pending
-Mark the test as pending.
+Marks the test as pending.
 
 ### setTimeout
-Run the test within a time.
+Runs the test within a set time.
 
 ### async
-Run async code. Eg. callbacks, timers.
+Runs async code. Eg. callbacks, timers.
 
 ---
 
@@ -201,7 +201,7 @@ Gerbil.globalConfig = {
 ### Callbacks
 
 Withing the config object you can add two types of callbacks, 'start' and
-'finish'. This can help you to trigger events after the scenario finished or a
+'finish'. This can help you trigger events after the scenario is finished or a
 nice sand clock when it starts.
 
 ```javascript
