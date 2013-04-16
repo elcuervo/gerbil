@@ -30,7 +30,19 @@ scenario("Gerbil - Assertions", {
     g.assertThrow(Error, function() {
       g.assertType(Function, 42);
     });
-  }
+  },
+
+  "should rise an error if expected and thrown errors don't match": function(g) {
+    function CustomError1() {}
+    function CustomError2() {}
+
+    g.assertThrow(Error, function() {
+      g.assertThrow(CustomError1, function(){
+        throw new CustomError2();
+      });
+    });
+  },
+
 });
 
 scenario("Gerbil - setTimeout", {
